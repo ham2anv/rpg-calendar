@@ -1,3 +1,6 @@
+const CSS_PATH = "/rpg-calendar.css"
+
+
 class Calendar extends HTMLElement {
     constructor() {
         super()
@@ -24,7 +27,7 @@ class Calendar extends HTMLElement {
             'link',
             {
                 rel:"stylesheet",
-                href:"rpg-calendar.css"
+                href:CSS_PATH
             }
         );
 
@@ -120,7 +123,7 @@ class CalendarEvent extends HTMLElement {
             'link',
             {
                 rel:'stylesheet',
-                href:'rpg-calendar.css'
+                href:CSS_PATH
             }
         );
 
