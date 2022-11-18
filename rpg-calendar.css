@@ -58,9 +58,25 @@
     max-height: 50vh;
     max-width: 90vw;
     box-shadow: 2px 2px 10px 1px #0004;
+    cursor: auto;
 }
 
 .rpg-calendar-button {
     float: right;
 }
 
+
+@media screen and (max-device-width: 600px), screen and (max-width: 600px) {
+    .rpg-calendar {
+        display: block;
+    }
+    .rpg-calendar-cell {
+        aspect-ratio: auto;
+    }
+    .rpg-calendar-cell:has(rpg-event) {
+        display: none;
+    }
+    .rpg-calendar-day {
+        display: none;
+    }
+}

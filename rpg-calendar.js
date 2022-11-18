@@ -143,7 +143,6 @@ class CalendarEvent extends HTMLElement {
             'button',
             'rpg-calendar-button',
             {
-                autofocus: "true",
                 value:'default'
             }
         );
