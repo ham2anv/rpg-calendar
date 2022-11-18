@@ -1,4 +1,4 @@
-const CSSPATH = "/rpg-calendar.css"
+const CSSPATH = "./rpg-calendar.css"
 
 
 class Calendar extends HTMLElement {
