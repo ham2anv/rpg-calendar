@@ -12,8 +12,21 @@ class Calendar extends HTMLElement {
         const name = this.getAttribute('name');
         const days = this.getAttribute('days');
 
-        const grid = createElement('div','rpg-calendar',{style:`--week:${week}`});
-        const styles = createElement('link',{rel:"stylesheet",href:"rpg-calendar.css"});
+        const grid = createElement(
+            'div',
+            'rpg-calendar',
+            {
+                style:`--week:${week}`
+            }
+        );
+
+        const styles = createElement(
+            'link',
+            {
+                rel:"stylesheet",
+                href:"rpg-calendar.css"
+            }
+        );
 
         if (name) {
             const title = createElement('h2','rpg-calendar-title');
@@ -33,31 +46,41 @@ class Calendar extends HTMLElement {
         }
         
 
-        const firstCell = createElement('div',"rpg-calendar-cell rpg-calendar-first",{style:`--start:${start}`,day:1});
+        const firstCell = createElement(
+            'div',
+            "rpg-calendar-cell rpg-calendar-first",
+            {
+                style:`--start:${start}`,day:1
+            }
+        );
         firstCell.innerText = "1";
+
         const template = createElement('template');
         template.append(createElement('slot',{name:`day-1`}))
+        
         firstCell.append(template);
         grid.append(firstCell);
 
         if (length>1) {
             for (let i = 0; i < length-1; i++) {
-                const cell = createElement('div','rpg-calendar-cell',{day:i+2});
+                const cell = createElement(
+                    'div',
+                    'rpg-calendar-cell',
+                    {
+                        day:i+2
+                    }
+                );
                 cell.innerText = i+2;
-                const temp = createElement('slot',{name:`day-${i+2}`});
-        
-                cell.append(temp);
+                
+                cell.append(createElement(
+                    'slot',
+                    {
+                        name:`day-${i+2}`
+                    }
+                ));
                 grid.append(cell);
             }
         }
-
-
-        this.querySelectorAll('rpg-event').forEach(ev => {
-            console.log("Beep");
-            const day = ev.getAttribute('day');
-            this.querySelector(`[day='${day}']`).append(ev);
-        })
-
         
         this.shadowRoot.append(grid, styles);
 
@@ -73,21 +96,41 @@ class CalendarEvent extends HTMLElement {
     connectedCallback() {
         this.attachShadow({mode: 'open'});
 
-        const day = this.getAttribute('day');
-        this.setAttribute('slot',`day-${day}`)
+        this.setAttribute('slot',`day-${this.getAttribute('day')}`)
         
         const event = createElement('div','rpg-calendar-event');
         event.innerHTML = `<span onclick="this.parentElement.querySelector('dialog').showModal()">${this.getAttribute('event-name')}</span>`;
+        
         const dialog = createElement('dialog','rpg-calendar-dialog');
-        const style = createElement('link',{rel:'stylesheet',href:'rpg-calendar.css'})
+        
+        const style = createElement(
+            'link',
+            {
+                rel:'stylesheet',
+                href:'rpg-calendar.css'
+            }
+        );
+        
+        const form = createElement(
+            'form',
+            {
+                method:'dialog'
+            }
+        );
+        
         const slot = createElement('slot');
-        const form = createElement('form',{method:'dialog'});
-        const button = createElement('button','rpg-calendar-button',{value:'default'})
+        
+        const button = createElement(
+            'button',
+            'rpg-calendar-button',
+            {
+              value:'default'
+            }
+        );
         button.innerText = "Close";
+        
         form.append(slot,button);
         dialog.append(style,form);
-        
-        
         event.append(dialog);
 
         this.shadowRoot.append(event);
