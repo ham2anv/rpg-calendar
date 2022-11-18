@@ -99,6 +99,10 @@ class CalendarEvent extends HTMLElement {
         this.setAttribute('slot',`day-${this.getAttribute('day')}`)
         
         const event = createElement('div','rpg-calendar-event');
+        if (this.getAttribute('color')) {
+            event.setAttribute('style',`--event-color:${this.getAttribute('color')}`)
+        }
+
         const eventText = createElement(
             'span',
             'rpg-calendar-event-text',

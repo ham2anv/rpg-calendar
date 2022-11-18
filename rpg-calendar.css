@@ -1,6 +1,8 @@
 .rpg-calendar {
     display: grid;
     grid-template-columns: repeat(var(--week), calc(100% / var(--week)));
+    background-color: white;
+    color: black;
 }
 
 .rpg-calendar-title {
@@ -14,16 +16,21 @@
 .rpg-calendar-cell {
     aspect-ratio: 1 / 1;
     border: 1px dotted lightgray;
-    color: gray;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+.rpg-calendar-cell::-webkit-scrollbar {
+    display: none;
+  }
 
 .rpg-calendar-first {
     grid-column: var(--start);
 }
 
 .rpg-calendar-event {
-    background-color: royalblue;
-    color: white;
+    background-color: var(--event-color,royalblue);
     padding: 0 0.2em;
     margin: 0.1em;
     border-radius: 0.2em;
@@ -38,12 +45,18 @@
 .rpg-calendar-event-text {
     font-size: 0.8em;
     padding: 0.1em 0;
+    background: inherit;
+    background-clip: text;
+    color: transparent;
+    filter: invert(1) brightness(200%) grayscale(1);
+    font-weight: bold;
 }
 
 .rpg-calendar-dialog {
     border: 1px solid black;
     max-height: 50vh;
     max-width: 90vw;
+    box-shadow: 2px 2px 10px 1px #0004;
 }
 
 .rpg-calendar-button {
