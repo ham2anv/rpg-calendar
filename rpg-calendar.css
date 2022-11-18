@@ -3,6 +3,14 @@
     grid-template-columns: repeat(var(--week), calc(100% / var(--week)));
 }
 
+.rpg-calendar-title {
+    text-align: center;
+}
+
+.rpg-calendar-day {
+    text-align: center;
+}
+
 .rpg-calendar-cell {
     aspect-ratio: 1 / 1;
     border: 1px dotted lightgray;
@@ -22,3 +30,4 @@
 .rpg-calendar-button {
     float: right;
 }
+

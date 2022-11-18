@@ -8,10 +8,30 @@ class Calendar extends HTMLElement {
 
         const week = this.getAttribute('week') || 7;
         const length = this.getAttribute('length');
-        const start = this.getAttribute('start')||1;
+        const start = this.getAttribute('start') || 1;
+        const name = this.getAttribute('name');
+        const days = this.getAttribute('days');
 
         const grid = createElement('div','rpg-calendar',{style:`--week:${week}`});
         const styles = createElement('link',{rel:"stylesheet",href:"rpg-calendar.css"});
+
+        if (name) {
+            const title = createElement('h2','rpg-calendar-title');
+            title.innerText = name;
+            this.shadowRoot.append(title);
+        }
+        
+        if (days) {
+            for (let i = 0; i < week; i++) {
+                console.log(i);
+                const dayTitle = createElement('div','rpg-calendar-day');
+                if(i < days.split(',').length) {
+                    dayTitle.innerText = days.split(',')[i].trim();
+                }
+                grid.append(dayTitle);
+            }
+        }
+        
 
         const firstCell = createElement('div',"rpg-calendar-cell rpg-calendar-first",{style:`--start:${start}`,day:1});
         firstCell.innerText = "1";
