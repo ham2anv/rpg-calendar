@@ -58,13 +58,14 @@ class CalendarEvent extends HTMLElement {
         
         const event = createElement('div','rpg-calendar-event');
         event.innerHTML = `<span onclick="this.parentElement.querySelector('dialog').showModal()">${this.getAttribute('event-name')}</span>`;
-        const dialog = createElement('dialog');
+        const dialog = createElement('dialog','rpg-calendar-dialog');
+        const style = createElement('link',{rel:'stylesheet',href:'rpg-calendar.css'})
         const slot = createElement('slot');
         const form = createElement('form',{method:'dialog'});
-        const button = createElement('button',{value:'default'})
+        const button = createElement('button','rpg-calendar-button',{value:'default'})
         button.innerText = "Close";
         form.append(slot,button);
-        dialog.append(form);
+        dialog.append(style,form);
         
         
         event.append(dialog);

@@ -12,3 +12,13 @@
 .rpg-calendar-first {
     grid-column: var(--start);
 }
+
+.rpg-calendar-dialog {
+    border: 1px solid black;
+    max-height: 50vh;
+    max-width: 90vw;
+}
+
+.rpg-calendar-button {
+    float: right;
+}
