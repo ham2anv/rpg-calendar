@@ -1,4 +1,4 @@
-const CSS_PATH = "/rpg-calendar.css"
+const CSSPATH = "/rpg-calendar.css"
 
 
 class Calendar extends HTMLElement {
@@ -10,7 +10,7 @@ class Calendar extends HTMLElement {
         this.attachShadow({ mode: "open" });
 
         const week = this.getAttribute('week') || 7;
-        const length = this.getAttribute('length');
+        const length = this.getAttribute('length') || 30;
         const start = this.getAttribute('start') || 1;
         const name = this.getAttribute('name');
         const days = this.getAttribute('days');
@@ -27,7 +27,7 @@ class Calendar extends HTMLElement {
             'link',
             {
                 rel:"stylesheet",
-                href:CSS_PATH
+                href:CSSPATH
             }
         );
 
@@ -123,7 +123,7 @@ class CalendarEvent extends HTMLElement {
             'link',
             {
                 rel:'stylesheet',
-                href:CSS_PATH
+                href:CSSPATH
             }
         );
 
@@ -143,7 +143,8 @@ class CalendarEvent extends HTMLElement {
             'button',
             'rpg-calendar-button',
             {
-              value:'default'
+                autofocus: "true",
+                value:'default'
             }
         );
         button.innerText = "Close";
