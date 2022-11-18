@@ -55,8 +55,9 @@
 
 .rpg-calendar-dialog {
     border: 1px solid black;
-    max-height: 50vh;
-    max-width: 90vw;
+    max-block-size: min(80vh, calc(100% - 2em));
+    max-block-size: min(80dvb, calc(100% - 2em));
+    max-inline-size: min(calc(100% - 2em), 60ch);
     box-shadow: 2px 2px 10px 1px #0004;
     cursor: auto;
 }
