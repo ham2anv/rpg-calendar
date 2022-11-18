@@ -107,6 +107,8 @@ class CalendarEvent extends HTMLElement {
             'span',
             'rpg-calendar-event-text',
             {
+                role: "button",
+                tabindex: 0,
                 onclick: "this.parentElement.querySelector('dialog').showModal()"
             }
         );

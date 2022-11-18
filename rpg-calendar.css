@@ -36,10 +36,8 @@
     border-radius: 0.2em;
     cursor: pointer;
     height: 1.1rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    line-height: 1;
+    display: flex;
+    align-items: center;
 }
 
 .rpg-calendar-event-text {
@@ -50,6 +48,8 @@
     color: transparent;
     filter: invert(1) brightness(200%) grayscale(1);
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .rpg-calendar-dialog {
