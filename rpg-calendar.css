@@ -5,5 +5,10 @@
 
 .rpg-calendar-cell {
     aspect-ratio: 1 / 1;
-    border: 1px solid black;
+    border: 1px dotted lightgray;
+    color: gray;
+}
+
+.rpg-calendar-first {
+    grid-column: var(--start);
 }

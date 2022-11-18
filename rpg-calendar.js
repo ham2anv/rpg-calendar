@@ -8,11 +8,12 @@ class Calendar extends HTMLElement {
 
         const week = this.getAttribute('week') || 7;
         const length = this.getAttribute('length');
+        const start = this.getAttribute('start')||1;
 
         const grid = createElement('div','rpg-calendar',{style:`--week:${week}`});
         const styles = createElement('link',{rel:"stylesheet",href:"rpg-calendar.css"});
 
-        const firstCell = createElement('div',"rpg-calendar-cell rpg-calendar-first");
+        const firstCell = createElement('div',"rpg-calendar-cell rpg-calendar-first",{style:`--start:${start}`});
         firstCell.innerText = "1";
         grid.append(firstCell);
 
