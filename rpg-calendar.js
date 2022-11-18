@@ -99,7 +99,14 @@ class CalendarEvent extends HTMLElement {
         this.setAttribute('slot',`day-${this.getAttribute('day')}`)
         
         const event = createElement('div','rpg-calendar-event');
-        event.innerHTML = `<span onclick="this.parentElement.querySelector('dialog').showModal()">${this.getAttribute('event-name')}</span>`;
+        const eventText = createElement(
+            'span',
+            'rpg-calendar-event-text',
+            {
+                onclick: "this.parentElement.querySelector('dialog').showModal()"
+            }
+        );
+        eventText.innerText = this.getAttribute('event-name');
         
         const dialog = createElement('dialog','rpg-calendar-dialog');
         
@@ -110,6 +117,9 @@ class CalendarEvent extends HTMLElement {
                 href:'rpg-calendar.css'
             }
         );
+
+        const eventTitle = createElement('h3','rpg-calendar-event-title');
+        eventTitle.innerText = this.getAttribute('event-name');
         
         const form = createElement(
             'form',
@@ -130,8 +140,8 @@ class CalendarEvent extends HTMLElement {
         button.innerText = "Close";
         
         form.append(slot,button);
-        dialog.append(style,form);
-        event.append(dialog);
+        dialog.append(style, eventTitle,form);
+        event.append(eventText, dialog);
 
         this.shadowRoot.append(event);
     }

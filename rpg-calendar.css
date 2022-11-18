@@ -21,6 +21,25 @@
     grid-column: var(--start);
 }
 
+.rpg-calendar-event {
+    background-color: royalblue;
+    color: white;
+    padding: 0 0.2em;
+    margin: 0.1em;
+    border-radius: 0.2em;
+    cursor: pointer;
+    height: 1.1rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 1;
+}
+
+.rpg-calendar-event-text {
+    font-size: 0.8em;
+    padding: 0.1em 0;
+}
+
 .rpg-calendar-dialog {
     border: 1px solid black;
     max-height: 50vh;
