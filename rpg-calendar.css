@@ -1,0 +1,9 @@
+.rpg-calendar {
+    display: grid;
+    grid-template-columns: repeat(var(--week), calc(100% / var(--week)));
+}
+
+.rpg-calendar-cell {
+    aspect-ratio: 1 / 1;
+    border: 1px solid black;
+}
