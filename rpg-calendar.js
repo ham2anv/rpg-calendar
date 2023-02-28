@@ -1,6 +1,3 @@
-const CSSPATH = "./rpg-calendar.css"
-
-
 class Calendar extends HTMLElement {
   constructor() {
       super()
@@ -18,16 +15,56 @@ class Calendar extends HTMLElement {
       const grid = createElement(
         'div',
         'rpg-calendar',
-        { style:`--week:${week}` }
+        { style:`--rpg-calendar-week:${week}` }
       );
 
-      const styles = createElement(
-        'link',
-        {
-            rel:"stylesheet",
-            href:CSSPATH
+      const styles = createElement('style');
+      styles.innerText = `
+        .rpg-calendar {
+          display: grid;
+          grid-template-columns: repeat(var(--rpg-calendar-week), calc(100% / var(--rpg-calendar-week)));
+          background-color: var(--rpg-calendar-bg, white);
+          color: var(--rpg-calendar-color, black);
         }
-      );
+        
+        .rpg-calendar-title {
+          text-align: center;
+        }
+        
+        .rpg-calendar-day {
+          text-align: center;
+        }
+        
+        .rpg-calendar-cell {
+          aspect-ratio: 1 / 1;
+          border: 1px dotted var(--rpg-calendar-cell-border, lightgray);
+          overflow: scroll;
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+        
+        .rpg-calendar-cell::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .rpg-calendar-first {
+          grid-column: var(--rpg-calendar-first-start);
+        }
+        
+        @media screen and (max-device-width: 600px), screen and (max-width: 600px) {
+          .rpg-calendar {
+            display: block;
+          }
+          .rpg-calendar-cell {
+            aspect-ratio: auto;
+          }
+          .rpg-calendar-cell:has(rpg-event) {
+            display: none;
+          }
+          .rpg-calendar-day {
+            display: none;
+          }
+        }`
 
       if (name) {
         const title = createElement('h2','rpg-calendar-title');
@@ -49,7 +86,7 @@ class Calendar extends HTMLElement {
         'div',
         "rpg-calendar-cell rpg-calendar-first",
         {
-          style: `--start:${start}`,
+          style: `--rpg-calendar-first-start:${start}`,
           day: 1
         }
       );
@@ -102,7 +139,7 @@ class CalendarEvent extends HTMLElement {
         }
       );
       if (this.getAttribute('color')) 
-        event.setAttribute('style',`--event-color:${this.getAttribute('color')}`);
+        event.setAttribute('style',`--rpg-calendar-event-color:${this.getAttribute('color')}`);
 
       const eventText = createElement(
         'span',
@@ -116,13 +153,44 @@ class CalendarEvent extends HTMLElement {
       
       const dialog = createElement('dialog','rpg-calendar-dialog');
       
-      const style = createElement(
-        'link',
-        {
-          rel:'stylesheet',
-          href:CSSPATH
+      const style = createElement('style');
+      style.innerText = `
+        .rpg-calendar-event {
+          background-color: var(--rpg-calendar-event-color, royalblue);
+          padding: 0 calc(var(--rpg-calendar-event-spacing, 0.1em) * 2);
+          margin: var(--rpg-calendar-event-spacing, 0.1em);
+          border-radius: calc(var(--rpg-calendar-event-spacing, 0.1em) * 2);
+          cursor: pointer;
+          height: 1.1rem;
+          display: flex;
+          align-items: center;
         }
-      );
+        
+        .rpg-calendar-event-text {
+          font-size: calc(var(--rpg-calendar-event-spacing, 0.1em) * 8);
+          padding: var(--rpg-calendar-event-spacing, 0.1em) 0;
+          background: inherit;
+          background-clip: text;
+          color: transparent;
+          filter: invert(1) brightness(200%) grayscale(1);
+          font-weight: bold;
+          white-space: nowrap;
+          overflow: hidden;
+          width: 100%;
+        }
+        
+        .rpg-calendar-dialog {
+          border: 1px solid black;
+          max-block-size: min(80vh, calc(100% - 2em));
+          max-block-size: min(80dvb, calc(100% - 2em));
+          max-inline-size: min(calc(100% - 2em), 60ch);
+          box-shadow: 2px 2px 10px 1px #0004;
+          cursor: auto;
+        }
+        
+        .rpg-calendar-button {
+          float: right;
+        }`
 
       const eventTitle = createElement('h3','rpg-calendar-event-title');
       eventTitle.innerText = this.getAttribute('event-name');
@@ -149,8 +217,8 @@ class CalendarEvent extends HTMLElement {
   }
 }
 
-customElements.define("rpg-calendar",Calendar);
-customElements.define("rpg-event",CalendarEvent);
+customElements.define("rpg-calendar", Calendar);
+customElements.define("rpg-event", CalendarEvent);
 
 
 function createElement(element, styles=null, props=null) {
@@ -165,18 +233,3 @@ function createElement(element, styles=null, props=null) {
   }
   return newElement;
 }
-
-// document.addEventListener("click", (event) => {
-//   console.log(event);
-//   if (!event.target.closest("dialog") && !event.target.matches("rpg-event")) {
-//     console.log("Click");
-//     document.querySelectorAll("rpg-event")
-//       .forEach((e) => {
-//         e.shadowRoot
-//           .querySelectorAll("dialog")
-//           .forEach((d) => {
-//               d.close()
-//           })
-//       });
-//   }
-// })

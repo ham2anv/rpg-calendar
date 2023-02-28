@@ -2,9 +2,7 @@
 A web component for adding custom calendars to your RPG page.
 
 ## Installing
-Once you have the files, change line 1 of `rpg-calendar.js` so that the value of `CSSPATH` is the location of the `rpg-calendar.css` file on your site.
-
-On any page where you want to add a calendar, you must:
+On any page where you want to add a calendar:
 
 1. Include a `<script>` with a `src` attribute linking to the `rpg-calendar.js` file on your site.
 2. Add a `<rpg-calendar>` element with any number of child `<rpg-event>` elements.
@@ -30,3 +28,25 @@ The `<rpg-event>` element represents a single event on your calendar. It must be
 - `color` (optional) is a CSS-legal color value for the tag in the main calendar. Default: `royalblue`.
 
 The contents of the `<rpg-event>` element are displayed as a modal dialog when the user clicks on the event tag.
+
+## Styling
+You can style your calendars using CSS Custom Properties in any element that contains a `<rpg-calendar>` element.
+
+```css
+.calendar-holder {
+  --rpg-calendar-bg: #333;
+  --rpg-calendar-color: #fafafa;
+}
+```
+
+Thanks to the cascade, these values will filter down to any calendar within that element.
+
+The custom properties for calendars are:
+- `--rpg-calendar-bg`: The `background-color` for the calendar. Default: `white`.
+- `--rpg-calendar-color`: The `color` for the calendar. Default: `black`.
+- `--rpg-calendar-cell-border`: The color of the calendar cell border. Default: `lightgray`.
+
+The custom properties for events are:
+
+- `--rpg-calendar-event-color`: The default `color` for event tags. Default: `royalblue`.
+- `--rpg-calendar-event-spacing`: Scales the `padding`, `margin`, and `border-radius` values of events. Default: `0.1em`.
