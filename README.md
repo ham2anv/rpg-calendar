@@ -7,7 +7,7 @@ On any page where you want to add a calendar:
 1. Include a `<script>` with a `src` attribute linking to the `rpg-calendar.js` file on your site.
 2. Add a `<rpg-calendar>` element with any number of child `<rpg-event>` elements.
 
-## rpg-calendar
+## \<rpg-calendar\>
 The `<rpg-calendar>` element is the container for your calendar. Each `<rpg-calendar>` element represents one month.
 
 `<rpg-calendar>` can take a number of attributes (all optional):
@@ -18,7 +18,7 @@ The `<rpg-calendar>` element is the container for your calendar. Each `<rpg-cale
 - `start` is the day of the week on which the first day of the month falls. Default: 1.
 - `days` is a list of names of the days of the week, separated by commas. Example: `"Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday"`
 
-## rpg-event
+## \<rpg-event\>
 The `<rpg-event>` element represents a single event on your calendar. It must be a child of a `<rpg-calendar>` element.
 
 `<rpg-event>` can take a number of attributes:
@@ -48,5 +48,5 @@ The custom properties for calendars are:
 
 The custom properties for events are:
 
-- `--rpg-calendar-event-color`: The default `color` for event tags. Default: `royalblue`.
+- `--rpg-calendar-event-color`: The default `background-color` for event tags. Default: `royalblue`.
 - `--rpg-calendar-event-spacing`: Scales the `padding`, `margin`, and `border-radius` values of events. Default: `0.1em`.
